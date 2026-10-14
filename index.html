@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ouma See &amp; Oupa See, Lambertsbaai</title>
+<meta name="description" content="Ouma See en Oupa See, selfkatering-akkommodasie in Lambertsbaai.">
+<style>
+  :root {
+    --sea: #0b4f6c;
+    --ocean: #1b8aa6;
+    --foam: #e9f6f9;
+    --wave: #7fc8d9;
+    --driftwood: #0b4f6c;
+    --teal: #13a0a8;
+    --charcoal: #0f2f3d;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--charcoal);
+    background: var(--foam);
+    line-height: 1.6;
+  }
+  .hero {
+    position: relative;
+    height: 60vh;
+    min-height: 320px;
+    background: url("images/hero-beach.jpg") center/cover no-repeat;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.55));
+  }
+  .hero-text {
+    position: absolute;
+    left: 0; right: 0; bottom: 2rem;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+    padding: 0 1rem;
+  }
+  .hero-text h1 { margin: 0 0 .3rem; font-size: clamp(1.8rem, 5vw, 2.8rem); }
+  .hero-text p { margin: 0; font-size: 1.05rem; }
+  .lang-toggle { text-align: center; padding: .6rem; font-size: .9rem; }
+  .lang-toggle button {
+    background: none; border: 1px solid var(--sea); color: var(--sea);
+    padding: .25rem .8rem; cursor: pointer; font: inherit;
+  }
+  .lang-toggle button.active { background: var(--sea); color: #fff; }
+
+  .intro { max-width: 720px; margin: 2rem auto; padding: 0 1.2rem; text-align: center; }
+  .intro h2 { color: var(--driftwood); margin: 0 0 .4rem; font-size: clamp(1.4rem, 3.5vw, 1.9rem); }
+  .intro .intro-names { margin: 0; font-size: 1.1rem; color: var(--sea); }
+
+  .houses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+    max-width: 960px;
+    margin: 0 auto 2.5rem;
+    padding: 0 1.2rem;
+  }
+  .house-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    text-align: center;
+  }
+  .house-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .house-card h3 { margin: .8rem 0 .2rem; color: var(--sea); }
+  .house-card a.jump {
+    display: inline-block;
+    margin: .4rem 0 1rem;
+    padding: .5rem 1rem;
+    background: var(--teal);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  section.house {
+    max-width: 960px;
+    margin: 0 auto 3rem;
+    padding: 0 1.2rem;
+    scroll-margin-top: 1rem;
+  }
+  section.house h2 { color: var(--driftwood); border-bottom: 2px solid var(--wave); padding-bottom: .3rem; }
+  .pair {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .pair img { width: 100%; border-radius: 6px; display: block; }
+  .details { margin: 1rem 0; }
+  .book {
+    display: inline-block;
+    margin-top: .8rem;
+    padding: .8rem 1.4rem;
+    background: #25d366;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+  }
+
+  .map { max-width: 960px; margin: 0 auto 2.5rem; padding: 0 1.2rem; text-align: center; }
+  .map a { color: var(--sea); }
+
+  footer {
+    background: var(--sea);
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-family: Arial, sans-serif;
+    font-size: .95rem;
+  }
+  footer a { color: #fff; }
+  .preview-line { font-weight: bold; margin-bottom: .4rem; }
+  .credit { opacity: .85; margin-top: .6rem; font-size: .85rem; }
+
+
+  .enquiry { max-width: 720px; margin: 0 auto 3rem; padding: 0 1.2rem; }
+  .enquiry h2 { color: var(--driftwood); border-bottom: 2px solid var(--wave); padding-bottom: .3rem; }
+  .enquiry form { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem 1rem; background: #fff; padding: 1.2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .enquiry label { display: flex; flex-direction: column; font-size: .92rem; font-family: Arial, sans-serif; }
+  .enquiry label.wide { grid-column: 1 / -1; }
+  .enquiry input, .enquiry select, .enquiry textarea {
+    margin-top: .3rem; padding: .55rem .6rem; font: inherit; border: 1px solid var(--wave); border-radius: 4px; background: #fff;
+  }
+  .enquiry button {
+    grid-column: 1 / -1; padding: .8rem; background: #25d366; color: #fff; border: 0; border-radius: 4px;
+    font-family: Arial, sans-serif; font-weight: bold; font-size: 1rem; cursor: pointer;
+  }
+  .enquiry .note { grid-column: 1 / -1; font-size: .85rem; opacity: .8; margin: 0; font-family: Arial, sans-serif; }
+  @media (max-width: 560px) { .enquiry form { grid-template-columns: 1fr; } }
+
+  [data-lang="af"] { display: none; }
+  body.lang-af [data-lang="af"] { display: revert; }
+  body.lang-af [data-lang="en"] { display: none; }
+</style>
+</head>
+<body>
+
+<header class="hero" role="img" aria-label="Die see by Lambertsbaai">
+  <div class="hero-text">
+    <h1>Ouma See &amp; Oupa See</h1>
+    <p data-lang="af">Selfkatering-akkommodasie, Lambertsbaai</p>
+    <p data-lang="en">Self-catering accommodation, Lambert's Bay</p>
+  </div>
+</header>
+
+<div class="lang-toggle">
+  <button id="btn-af" class="active" type="button">Afrikaans</button>
+  <button id="btn-en" type="button">English</button>
+</div>
+
+<div class="intro">
+  <h2 data-lang="af">Is jy reg om te ontspan? Ons het die plek vir jou.</h2>
+  <h2 data-lang="en">Ready to unwind? The place is waiting for you.</h2>
+  <p class="intro-names" data-lang="af">Ouma See en Oupa See, net oor die straat van die see</p>
+  <p class="intro-names" data-lang="en">Ouma See and Oupa See, just across the road from the sea</p>
+</div>
+
+<div class="houses">
+  <div class="house-card">
+    <img src="images/oupa-front.jpg" alt="Oupa See, 13 Voortrekker Street">
+    <h3>Oupa See</h3>
+    <a class="jump" href="#oupa-see" data-lang="af">Sien Oupa See</a>
+    <a class="jump" href="#oupa-see" data-lang="en">View Oupa See</a>
+  </div>
+  <div class="house-card">
+    <img src="images/ouma-front.jpg" alt="Ouma See, Lambertsbaai">
+    <h3>Ouma See</h3>
+    <a class="jump" href="#ouma-see" data-lang="af">Sien Ouma See</a>
+    <a class="jump" href="#ouma-see" data-lang="en">View Ouma See</a>
+  </div>
+</div>
+
+<section class="house" id="oupa-see">
+  <h2>Oupa See</h2>
+  <div class="pair">
+    <img src="images/oupa-front.jpg" alt="Die voorkant van Oupa See">
+    <img src="images/oupa-stoep.jpg" alt="Uitsig vanaf die stoep van Oupa See">
+  </div>
+  <div class="details">
+    <p data-lang="af">Pryse: <strong>R450 pp per nag</strong> (2+ gaste, 2+ nagte) · <strong>R500 pp per nag</strong> (2+ gaste, 1 nag) · <strong>R700 pp per nag</strong> (enkel gas)</p>
+    <p data-lang="en">Rates: <strong>R450 pp per night</strong> (2+ guests, 2+ nights) · <strong>R500 pp per night</strong> (2+ guests, 1 night) · <strong>R700 pp per night</strong> (single guest)</p>
+    <p data-lang="af">Slaap 4 gaste · 2 slaapkamers · braai · parkeer · troeteldier-vriendelik</p>
+    <p data-lang="en">Sleeps 4 guests · 2 bedrooms · braai · parking · pet-friendly</p>
+  </div>
+  <a class="book" href="https://wa.me/27833971806?text=Hallo%2C%20ek%20wil%20graag%20Oupa%20See%20bespreek" target="_blank" rel="noopener">WhatsApp om Oupa See te bespreek</a>
+</section>
+
+<section class="house" id="ouma-see">
+  <h2>Ouma See</h2>
+  <div class="pair">
+    <img src="images/ouma-front.jpg" alt="Die voorkant van Ouma See">
+    <img src="images/ouma-stoep.jpg" alt="Uitsig vanaf die stoep van Ouma See">
+  </div>
+  <div class="details">
+    <p data-lang="af">Pryse: <strong>R450 pp per nag</strong> (2+ gaste, 2+ nagte) · <strong>R500 pp per nag</strong> (2+ gaste, 1 nag) · <strong>R700 pp per nag</strong> (enkel gas)</p>
+    <p data-lang="en">Rates: <strong>R450 pp per night</strong> (2+ guests, 2+ nights) · <strong>R500 pp per night</strong> (2+ guests, 1 night) · <strong>R700 pp per night</strong> (single guest)</p>
+    <p data-lang="af">Selfkatering · onbeperkte seeuitsig · braai · parkeer</p>
+    <p data-lang="en">Self-catering · unlimited sea views · braai · parking</p>
+  </div>
+  <a class="book" href="https://wa.me/27833971806?text=Hallo%2C%20ek%20wil%20graag%20Ouma%20See%20bespreek" target="_blank" rel="noopener">WhatsApp om Ouma See te bespreek</a>
+</section>
+
+<section class="enquiry" id="enquiry">
+  <h2 data-lang="af">Vra oor 'n bespreking</h2>
+  <h2 data-lang="en">Enquire about a booking</h2>
+  <form id="enquiry-form">
+    <label><span data-lang="af">Watter huis?</span><span data-lang="en">Which house?</span>
+      <select name="house" required>
+        <option value="Oupa See">Oupa See</option>
+        <option value="Ouma See">Ouma See</option>
+      </select>
+    </label>
+    <label><span data-lang="af">Aantal gaste</span><span data-lang="en">Number of guests</span>
+      <input type="number" name="guests" min="1" max="8" value="2" required>
+    </label>
+    <label><span data-lang="af">Aankoms</span><span data-lang="en">Check-in</span>
+      <input type="date" name="checkin" required>
+    </label>
+    <label><span data-lang="af">Vertrek</span><span data-lang="en">Check-out</span>
+      <input type="date" name="checkout" required>
+    </label>
+    <label class="wide"><span data-lang="af">Jou naam</span><span data-lang="en">Your name</span>
+      <input type="text" name="name" required>
+    </label>
+    <label class="wide"><span data-lang="af">Enige vrae of spesiale versoeke (opsioneel)</span><span data-lang="en">Any questions or special requests (optional)</span>
+      <textarea name="message" rows="3"></textarea>
+    </label>
+    <button type="submit"><span data-lang="af">Stuur enquiry via WhatsApp</span><span data-lang="en">Send enquiry via WhatsApp</span></button>
+    <p class="note"><span data-lang="af">Die WhatsApp-boodskap word met jou besonderhede vooraf ingevul. Niks word bespreek voordat die eienaar bevestig nie.</span><span data-lang="en">Your details are pre-filled into a WhatsApp message. Nothing is booked until the owner confirms.</span></p>
+  </form>
+</section>
+
+<div class="map">
+  <p data-lang="af">Lambertsbaai, Weskus, Wes-Kaap</p>
+  <p data-lang="en">Lambert's Bay, West Coast, Western Cape</p>
+  <p><a href="https://www.google.com/maps/search/Lambert%27s+Bay+Western+Cape" target="_blank" rel="noopener">Kyk op die kaart / View on map</a></p>
+</div>
+
+<footer>
+  <p class="preview-line" data-lang="af">Gratis voorskou · betaal niks totdat jy goedkeur · R1 500 eenmalig daarna · 50% deposito</p>
+  <p class="preview-line" data-lang="en">Free preview · pay nothing until you approve · R1,500 once-off after · 50% deposit</p>
+  <p>Preview build by Percipio Digital · 073 839 9334 · percipiodigital@gmail.com</p>
+</footer>
+
+<script>
+  const btnAf = document.getElementById('btn-af');
+  const btnEn = document.getElementById('btn-en');
+  function setLang(lang) {
+    document.body.classList.toggle('lang-af', lang === 'af');
+    btnAf.classList.toggle('active', lang === 'af');
+    btnEn.classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+  }
+  btnAf.addEventListener('click', () => setLang('af'));
+  btnEn.addEventListener('click', () => setLang('en'));
+  setLang('af');
+
+  const enquiryForm = document.getElementById('enquiry-form');
+  enquiryForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(enquiryForm);
+    const checkin = d.get('checkin');
+    const checkout = d.get('checkout');
+    if (checkout <= checkin) {
+      alert(document.body.classList.contains('lang-af')
+        ? 'Vertrekdatum moet na die aankomsdatum wees.'
+        : 'Check-out must be after check-in.');
+      return;
+    }
+    const lines = [
+      'Hallo, ek wil graag enquire oor ' + d.get('house') + '.',
+      'Aankoms: ' + checkin,
+      'Vertrek: ' + checkout,
+      'Aantal gaste: ' + d.get('guests'),
+      'Naam: ' + d.get('name')
+    ];
+    if (d.get('message')) lines.push('Vrae: ' + d.get('message'));
+    window.open('https://wa.me/27833971806?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+  });
+
+</script>
+</body>
+</html>
